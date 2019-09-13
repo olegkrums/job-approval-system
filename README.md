@@ -5,7 +5,7 @@
 Simple Job Approval System's architecture will suite for a well structured Monolith which later could be refactored into more distributed, scalable system.
 
 ## Job Approval .Net Core API
-JobApprovalController reference from **Job Approval .Net Core Service**:
+JobApprovalController reference **Job Approval .Net Core Service**:
 ```csharp
  private readonly IRepository<JobSheet> _jobSheets;
 ```
@@ -15,7 +15,7 @@ JobApprovalController reference from **Job Approval .Net Core Service**:
  - ApproveJobSheet([FromBody]JobSheet jobSheet)
 
 ## Job Approval .Net Core Service
-- Data Access - Uses generic Repository pattern, which allows to test functionality without the datastore.
+- Data Access - Uses generic Repository pattern, which allows to test functionality without the real datastore.
 - Domain Objects - very difficult to design Domain Model without understanding business domain :)). ReferenceHoursInMin, ReferenceTotalPrice and LaborHourCost might don't belong in JobSheet, not sure.
 ```csharp
 public class JobSheet
@@ -31,7 +31,7 @@ public class JobSheet
         }
     }
 ```
-GenericCategory property will allow to identify type of Item/Part in the rule evaluator. I'm guessing in real life GenericCategory would be a type that will hold Parent/Child categories.
+GenericCategory property will allow to identify type of Item/Part in the rule evaluator. I'm guessing in real life GenericCategory would be a type that holds Parent/Child categories.
 ```csharp
     public class Item
     {
@@ -69,7 +69,7 @@ public class JobApprovalDecision
         Declined = 3
     }
 ```
-- RulesEvaluator - design is based on the Rule Pattern. This allows one to implement independent rules which is much easier to read then deeply nested boolean logic and test it. 
+- RulesEvaluator - design is based on the Rule Pattern. This allows one to implement independent rules which is much easier to read than deeply nested boolean logic and test it. 
 ## Angular 8 SPA
 - App Component = Simple Job Approval System
--  JobApprovalApi - makes API calls to **Job Approval .Net Core API** 
+-  JobApprovalApi - makes asynchronous API calls to **Job Approval .Net Core API** 

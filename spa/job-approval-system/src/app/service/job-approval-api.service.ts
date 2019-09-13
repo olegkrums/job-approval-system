@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { JobSheet, JobApprovalDecision } from '../model/job-approval.model';
 
 @Injectable()
-export class PositionStatusApi {
+export class JobApprovalApi {
     private _dataStore: {
         jobSheet: JobSheet,
         jobApprovalDecision: JobApprovalDecision,

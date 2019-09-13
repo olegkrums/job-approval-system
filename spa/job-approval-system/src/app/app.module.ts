@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AppComponent } from './app.component';
 
 
-import { PositionStatusApi } from './service/job-approval-api.service';
+import { JobApprovalApi } from './service/job-approval-api.service';
 
 // Material
 import { MatTableModule } from '@angular/material/table';
@@ -35,7 +35,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSortModule,
     BrowserAnimationsModule
   ],
-  providers: [PositionStatusApi, HttpClient],
+  providers: [JobApprovalApi, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

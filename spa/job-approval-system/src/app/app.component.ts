@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { PositionStatusApi } from './service/job-approval-api.service';
+import { JobApprovalApi } from './service/job-approval-api.service';
 import { IJobSheetTableData, JobSheet, JobApprovalDecision } from './model/job-approval.model';
 
 @Component({
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   public jobSheet: JobSheet = new JobSheet();
   public jobApprovalDecision: JobApprovalDecision = new JobApprovalDecision();
 
-  constructor(private positionStatusApi: PositionStatusApi) {
+  constructor(private positionStatusApi: JobApprovalApi) {
 
   }
 

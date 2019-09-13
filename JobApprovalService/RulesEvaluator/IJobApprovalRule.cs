@@ -1,5 +1,4 @@
 ﻿using JobApprovalService.Domain;
-using System;
 
 namespace JobApprovalService.RulesEvaluator
 {

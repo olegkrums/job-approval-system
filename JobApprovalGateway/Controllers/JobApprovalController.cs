@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using JobApprovalService.DataAccess;
 using JobApprovalService.Domain;
 using JobApprovalService.RulesEvaluator;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobApprovalGateway.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("CorsPolicy")]
     public class JobApprovalController : ControllerBase
     {
         private readonly IRepository<JobSheet> _jobSheets;
@@ -20,7 +21,7 @@ namespace JobApprovalGateway.Controllers
 
         // GET api/JobApproval/jobSheet
         [HttpPost]
-        [Route("ApprovalJobSheet")]
+        [Route("ApproveJobSheet")]
         public JobApprovalDecision ApproveJobSheet([FromBody]JobSheet jobSheet)
         {
             JobRulesEvaluator jobRulesEvaluator = new JobRulesEvaluator();

@@ -10,6 +10,7 @@ namespace JobApprovalService.Rules
             // Hard-coded, take as parameter
             var tenPercent = 10;
             var fifteenPercent = 15;
+
             var tenPercentTotal = ((jobSheet.TotalCost / 100) * tenPercent) + jobSheet.TotalCost;
             var fifteenPercentTotal = ((jobSheet.TotalCost / 100) * fifteenPercent) + jobSheet.TotalCost;
 

@@ -1,72 +1,156 @@
 ﻿using JobApprovalService.Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace JobApprovalService.DataAccess.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
         private List<JobSheet> _jobSheets;
+        private readonly decimal _labourCostHour = 45;
 
         public Repository()
         {
             _jobSheets = new List<JobSheet>();
 
-            var units = new List<Item>();
-
-            units.Add(new Item
+            var tyreOne = new Item
             {
                 ItemId = Guid.NewGuid(),
                 GenericCategory = "Tyres",
                 UnitCost = 200,
                 ItemName = "Tyre",
                 ItemTime = 30
-            });
+            };
 
-            units.Add(new Item
+            var tyreTwo = new Item
+            {
+                ItemId = Guid.NewGuid(),
+                GenericCategory = "Tyres",
+                UnitCost = 200,
+                ItemName = "Tyre",
+                ItemTime = 30
+            };
+
+            var tyreThree = new Item
+            {
+                ItemId = Guid.NewGuid(),
+                GenericCategory = "Tyres",
+                UnitCost = 200,
+                ItemName = "Tyre",
+                ItemTime = 30
+            };
+
+            var tyreFour = new Item
+            {
+                ItemId = Guid.NewGuid(),
+                GenericCategory = "Tyres",
+                UnitCost = 200,
+                ItemName = "Tyre",
+                ItemTime = 30
+            };
+
+            var breakPads = new Item
             {
                 ItemId = Guid.NewGuid(),
                 GenericCategory = "Break Pads",
                 UnitCost = 50,
                 ItemName = "Pads",
                 ItemTime = 60
-            });
+            };
 
-            units.Add(new Item
+            var discs = new Item
             {
                 ItemId = Guid.NewGuid(),
-                GenericCategory = "Break Discs",
+                GenericCategory = "Discs",
                 UnitCost = 90,
                 ItemName = "Discs",
                 ItemTime = 100
-            });
+            };
 
-            units.Add(new Item
+            var oil5Liters = new Item
             {
                 ItemId = Guid.NewGuid(),
                 GenericCategory = "Oil",
                 UnitCost = 20,
-                ItemName = "Discs",
+                ItemName = "Oil 5 Lt",
                 ItemTime = 30
-            });
+            };
 
-            units.Add(new Item
+            var oil10Liters = new Item
+            {
+                ItemId = Guid.NewGuid(),
+                GenericCategory = "Oil",
+                UnitCost = 40,
+                ItemName = "Oil 10 Lt",
+                ItemTime = 30
+            };
+
+            var exhaust = new Item
             {
                 ItemId = Guid.NewGuid(),
                 GenericCategory = "Exhaust",
                 UnitCost = 175,
                 ItemName = "Exhaust",
                 ItemTime = 240
-            });
+            };
 
-            _jobSheets.Add(new JobSheet
+            var tyresBreakPadsDiscs = new List<Item>
             {
-                Id = Guid.Parse("2ce22be0-98cc-423b-9446-d7a5cf9e6756"),
-                ReferenceHoursInMin = new Random().Next(5, 9),
-                ReferenceTotalPrice = new Random().Next(500, 1000),
-                LaborHourCost = 45,
-                Items = units
-            });
+                tyreOne,
+                tyreTwo,
+                tyreThree,
+                breakPads,
+                discs
+            };
+
+            var js1= new JobSheet
+            {
+                Id = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                ReferenceHoursInMin = tyresBreakPadsDiscs.Sum(x => x.ItemTime),
+                ReferenceTotalPrice = (_labourCostHour * tyresBreakPadsDiscs.Sum(x => x.ItemTime) / 60) + (tyresBreakPadsDiscs.Sum(x => x.UnitCost)),
+                LaborHourCost = _labourCostHour,
+                Items = tyresBreakPadsDiscs
+            };
+
+            var exhaustOilTyres = new List<Item>
+            {
+                exhaust,
+                oil5Liters,
+                tyreOne,
+                tyreTwo
+            };
+
+            var js2 = new JobSheet
+            {
+                Id = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                ReferenceHoursInMin = exhaustOilTyres.Sum(x=>x.ItemTime),
+                ReferenceTotalPrice = (_labourCostHour * exhaustOilTyres.Sum(x => x.ItemTime) / 60) + (exhaustOilTyres.Sum(x => x.UnitCost)),
+                LaborHourCost = _labourCostHour,
+                Items = exhaustOilTyres
+            };
+
+            var breakPadsDiscsOil5LitersTyres = new List<Item>
+            {
+                breakPads,
+                discs,
+                oil5Liters,
+                tyreOne,
+                tyreTwo
+            };
+
+            var js3 = new JobSheet
+            {
+                Id = Guid.Parse("00000000-0000-0000-0000-000000000003"),
+                ReferenceHoursInMin = breakPadsDiscsOil5LitersTyres.Sum(x => x.ItemTime),
+                ReferenceTotalPrice = (_labourCostHour * breakPadsDiscsOil5LitersTyres.Sum(x => x.ItemTime) / 60) + (breakPadsDiscsOil5LitersTyres.Sum(x => x.UnitCost)),
+                LaborHourCost = _labourCostHour,
+                Items = breakPadsDiscsOil5LitersTyres
+            };
+
+            _jobSheets.Add(js1);
+            _jobSheets.Add(js2);
+            _jobSheets.Add(js3);
         }
 
         public IEnumerable<T> GetAll()

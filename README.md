@@ -75,4 +75,12 @@ public class JobApprovalDecision
 -  JobApprovalApi - makes asynchronous API calls to **Job Approval .Net Core API** 
 
 ## Screenshots
-![approved](https://github.com/olegkrums/job-approval-system/blob/master/Approved.jpg)
+**Approved**
+![approved](https://github.com/olegkrums/job-approval-system/blob/master/Approved.PNG)
+**Refered**
+![approved](https://github.com/olegkrums/job-approval-system/blob/master/Refered.PNG)
+**Declined: Reference Price more than 15%**
+![approved](https://github.com/olegkrums/job-approval-system/blob/master/Declined.PNG)
+**Declined: Tyres are either not in Pairs or more than 4.**
+![approved](https://github.com/olegkrums/job-approval-system/blob/master/Declined_2.PNG)
+

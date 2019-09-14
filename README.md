@@ -73,3 +73,6 @@ public class JobApprovalDecision
 ## Angular 8 SPA
 - App Component = Simple Job Approval System
 -  JobApprovalApi - makes asynchronous API calls to **Job Approval .Net Core API** 
+
+## Screenshots
+![approved](https://github.com/olegkrums/job-approval-system/blob/master/Approved.jpg)
